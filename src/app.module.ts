@@ -5,7 +5,7 @@ import { LegendsModule } from './legends/legends.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://admin:JmyQfzcqwHVyCG5s@cluster0.rpbqu.mongodb.net/legendscards?retryWrites=true&w=majority', { 
+      `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.rpbqu.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`, { 
         useNewUrlParser: true, 
         useUnifiedTopology: true, 
       },

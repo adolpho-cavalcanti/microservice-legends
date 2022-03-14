@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Transport } from '@nestjs/microservices';
@@ -9,7 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://user:Ti5Ls2ahgaJ0@3.89.120.123:5672/legendsCards'],
+      urls: [`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASS}@3.89.120.123:5672/${process.env.RABBITMQ_CONSOLE}`],
       noAck: false,
       queue: 'micro-legend'
     },
