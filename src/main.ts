@@ -7,11 +7,13 @@ import { Logger } from '@nestjs/common';
 
 const logger = new Logger('Main');
 
+const rabbitmqUrl = process.env.RABBITMQ_URL;
+
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.RMQ,
     options: {
-      urls: [`amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASS}@3.89.120.123:5672/${process.env.RABBITMQ_CONSOLE}`],
+      urls: [`amqp://${rabbitmqUrl}`],
       noAck: false,
       queue: 'micro-legend'
     },
